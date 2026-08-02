@@ -63,12 +63,10 @@ app.post('/api/submit-form', async (req, res) => {
           .json({ success: false, message: 'Este e-mail já está cadastrado.' });
       }
       if (error.detail.includes('telefone')) {
-        return res
-          .status(400)
-          .json({
-            success: false,
-            message: 'Este telefone já está cadastrado.',
-          });
+        return res.status(400).json({
+          success: false,
+          message: 'Este telefone já está cadastrado.',
+        });
       }
     }
 

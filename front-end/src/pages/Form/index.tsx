@@ -11,11 +11,14 @@ export function Form() {
     data.contribuicoes = formData.getAll('contribuicoes');
 
     try {
-      const response = await fetch('http://localhost:3000/api/submit-form', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        'https://nasa-space-apps-brasilia-2026.onrender.com/api/submit-form',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        },
+      );
 
       const result = await response.json();
 
