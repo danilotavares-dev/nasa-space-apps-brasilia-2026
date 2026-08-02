@@ -27,10 +27,10 @@ export const FAQ = () => {
 
           <div className="bg-white/5 p-6 rounded-lg border-l-4 border-[#eafe07] flex flex-col gap-2">
             <h3 className="font-overpass font-bold text-white text-[20px]">
-              Preciso conhecer programação?
+              Quais são os dias do evento?
             </h3>
             <p className="font-overpass text-gray-300 text-[16px]">
-              Não. Existem diversas funções que não envolvem desenvolvimento.
+              Dias 14-15 de Novembro de 2026 (2 dias)
             </p>
           </div>
 
