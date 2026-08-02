@@ -63,6 +63,18 @@ export const FAQ = () => {
               Em Brasília. O local exato será confirmado e divulgado em breve.
             </p>
           </div>
+
+          <div className="bg-white/5 p-6 rounded-lg border-l-4 border-[#eafe07] flex flex-col gap-2">
+            <h3 className="font-overpass font-bold text-white text-[20px]">
+              Quantas pessoas fazem parte da equipe atualmente?
+            </h3>
+            <p className="font-overpass text-gray-300 text-[16px]">
+              No momento, o projeto é tocado integralmente por uma única pessoa
+              (desenvolvimento, organização e gestão). Como o escopo é grande,
+              as portas estão abertas para quem quiser entrar, por isso as
+              inscrições para novos membros estão ativas logo acima.
+            </p>
+          </div>
         </div>
       </div>
     </div>
