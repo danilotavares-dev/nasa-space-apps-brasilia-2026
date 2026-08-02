@@ -19,7 +19,6 @@ export function Home() {
       <Header />
 
       <main className="flex flex-col w-full bg-linear-to-br from-[#0042A6] to-[#07173F]">
-        {/* HERO */}
         <section className="flex w-full min-h-dvh justify-center items-center px-5 py-20 md:px-6">
           <div className="flex flex-col justify-center items-start gap-12 md:gap-20 w-full max-w-340">
             <div className="flex flex-col gap-6 md:gap-10 w-full max-w-300">
