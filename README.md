@@ -51,6 +51,5 @@ A organização local em Brasília busca formar uma equipe multidisciplinar e ap
 
 Para dúvidas, parcerias ou mais informações sobre como fazer parte da organização:
 
-* **Responsável:** Danilo Tavares Lima
-* **E-mail:** `danilotavares070@gmail.com`
+* **E-mail:** `nasaspaceappsbsb@gmail.com`
 
