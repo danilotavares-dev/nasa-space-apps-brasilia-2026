@@ -1,6 +1,12 @@
 import { Header } from '../../components/Header';
+import { useToast } from '../../components/Toast';
+
+import { useState } from 'react';
 
 export function Form() {
+  const { showToast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -10,9 +16,16 @@ export function Form() {
     const data: Record<string, any> = Object.fromEntries(formData.entries());
     data.contribuicoes = formData.getAll('contribuicoes');
 
+    if (data.contribuicoes.length === 0) {
+      showToast('Selecione pelo menos uma área de contribuição.', 'error');
+      return;
+    }
+
+    setIsSubmitting(true);
+
     try {
       const response = await fetch(
-        'https://nasa-space-apps-brasilia-2026.onrender.com/api/submit-form',
+        `${import.meta.env.VITE_API_URL}/api/submit-form`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -23,16 +36,19 @@ export function Form() {
       const result = await response.json();
 
       if (result.success) {
-        alert('Formulário salvo com sucesso!');
+        showToast('Formulário enviado com sucesso!', 'success');
         formElement.reset();
       } else {
-        alert(result.message);
+        showToast(result.message, 'error');
       }
     } catch (error) {
       console.error('Erro:', error);
-      alert(
-        'Erro ao conectar com o servidor. Verifique se o back-end está rodando.',
+      showToast(
+        'Erro ao conectar com o servidor. Tente novamente em instantes.',
+        'error',
       );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -67,6 +83,7 @@ export function Form() {
             name="nome"
             type="text"
             placeholder="Nome Completo"
+            required
             className="text-black font-overpass bg-white p-3 w-full border-none outline-none rounded-sm"
           />
 
@@ -81,6 +98,7 @@ export function Form() {
             name="email"
             type="email"
             placeholder="E-Mail"
+            required
             className="text-black font-overpass bg-white p-3 w-full border-none outline-none rounded-sm"
           />
 
@@ -95,6 +113,7 @@ export function Form() {
             name="telefone"
             type="tel"
             placeholder="Telefone"
+            required
             className="text-black font-overpass bg-white p-3 w-full border-none outline-none rounded-sm"
           />
 
@@ -109,6 +128,7 @@ export function Form() {
             name="universidade"
             type="text"
             placeholder="Universidade"
+            required
             className="text-black font-overpass bg-white p-3 w-full border-none outline-none rounded-sm"
           />
 
@@ -123,6 +143,7 @@ export function Form() {
             name="curso"
             type="text"
             placeholder="Ex: Engenharia/3"
+            required
             className="text-black font-overpass bg-white p-3 w-full border-none outline-none rounded-sm"
           />
         </div>
@@ -140,6 +161,7 @@ export function Form() {
                   name="participacaoEventos"
                   id="participou-yes"
                   value="Sim"
+                  required
                   className="cursor-pointer"
                 />
                 <label
@@ -209,6 +231,7 @@ export function Form() {
             </h2>
             <select
               name="preferenciaContribuicao"
+              required
               className="text-black font-overpass bg-white p-3 w-full border-none outline-none cursor-pointer rounded-sm"
               defaultValue=""
             >
@@ -317,9 +340,10 @@ export function Form() {
         <div className="flex justify-center md:justify-start items-center w-full">
           <button
             type="submit"
+            disabled={isSubmitting}
             className="font-overpass font-bold text-black px-10 py-4 md:px-18 md:p-3 rounded-md bg-[#eafe07] hover:bg-[#0042A6] hover:text-white transition-colors cursor-pointer w-full sm:w-auto"
           >
-            Enviar
+            {isSubmitting ? 'Enviando...' : 'Enviar'}
           </button>
         </div>
       </form>
