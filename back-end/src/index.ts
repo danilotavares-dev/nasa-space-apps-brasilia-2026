@@ -77,6 +77,10 @@ app.post('/api/submit-form', async (req, res) => {
   }
 });
 
+app.get('/health', (req, res) => {
+  res.status(200).send('ok');
+});
+
 app.listen(3000, () => {
   console.log(
     'Servidor Express rodando na porta 3000! Aguardando formulários...',
