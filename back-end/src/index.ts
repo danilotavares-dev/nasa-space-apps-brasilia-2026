@@ -115,11 +115,6 @@ app.post('/api/submit-form', async (req, res) => {
       .status(500)
       .json({ success: false, message: 'Falha interna ao salvar os dados.' });
   }
-
-  console.error('Erro ao salvar no banco:', error);
-  res
-    .status(500)
-    .json({ success: false, message: 'Falha interna ao salvar os dados.' });
 });
 
 app.get('/health', (req, res) => {
